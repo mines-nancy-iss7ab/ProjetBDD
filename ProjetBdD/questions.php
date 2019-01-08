@@ -39,9 +39,10 @@ define( 'DB_HOST', 'localhost' );
 					?><tr><?php
 					for($i=0; $i<$reponse->columnCount();$i++)
 					{
-					?><td><?php echo $donnees[$i] ?></td><?php
+					 echo "<td>".$donnees[$i]."</td>" ;
 					echo "&nbsp";
 					}
+					echo "<br>";
 				?></tr><?php
 				}
 		}
@@ -105,7 +106,56 @@ define( 'DB_HOST', 'localhost' );
 					break;
 					
 					case "11":
+					afficherRequete('SELECT DISTINCT nom_auteur, nom_editeur FROM Edition 
+					NATURAL JOIN Editeur
+					NATURAL JOIN Livre
+					NATURAL JOIN Ecriture
+					NATURAL JOIN Auteur AS A
+					INNER JOIN (SELECT * FROM Edition 
+						NATURAL JOIN Editeur
+						NATURAL JOIN Livre
+						NATURAL JOIN Ecriture
+						NATURAL JOIN Auteur) AS B 
+					ON A.id_editeur = B.id_editeur
+					WHERE A.nom_auteur <> B.nom_auteur
+					ORDER BY nom_editeur');
+					break;
 					
+					case "12":
+					afficherRequete('SELECT titre_livre FROM Edition 
+					NATURAL JOIN Editeur
+					NATURAL JOIN Livre
+					NATURAL JOIN Ecriture
+					NATURAL JOIN Auteur 
+					WHERE genre ="science_ﬁction" AND nom_auteur="Asimov Isaac" 
+					AND nom_editeur = "Gallimard" AND nature = "nouvelles"');
+					break;
+					
+					case "13":
+					afficherRequete('SELECT titre_livre FROM Livre
+					NATURAL JOIN Ecriture
+					NATURAL JOIN Auteur
+					WHERE Décès = "-"');
+					break;
+					
+					case "14":
+					afficherRequete('SELECT DISTINCT nom_auteur FROM Livre AS A 
+					NATURAL JOIN Ecriture
+					NATURAL JOIN Auteur
+					INNER JOIN (SELECT * FROM Livre 
+						NATURAL JOIN Ecriture
+						NATURAL JOIN Auteur)
+					AS B ON A.nom_auteur = B.nom_auteur
+					WHERE A.nature <> B.nature');
+					break;
+					
+					case "15":
+					afficherRequete('SELECT nom_auteur FROM (SELECT nom_auteur, COUNT (*) AS nombre_livre
+						FROM Auteur
+						NATURAL JOIN Ecriture
+						NATURAL JOIN Livre
+						GROUP BY nom_auteur);
+					WHERE nombre_livre > 1')
 					break;
 			}
 		}
