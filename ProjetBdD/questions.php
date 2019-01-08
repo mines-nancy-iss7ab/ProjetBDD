@@ -155,7 +155,7 @@ define( 'DB_HOST', 'localhost' );
 						NATURAL JOIN Ecriture
 						NATURAL JOIN Livre
 						GROUP BY nom_auteur);
-					WHERE nombre_livre > 1')
+					WHERE nombre_livre > 1');
 					break;
 			}
 		}
