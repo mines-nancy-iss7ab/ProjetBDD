@@ -26,6 +26,8 @@
 		<form action="questions.php" method="post">
 		<input type="submit" value="Réponses aux questions" name="questions"/>
 		</form>
-		
+		<form action="bonus.php" method="post">
+		<input type="submit" value="Réponses aux 4 questions bonus" name="bonus"/>
+		</form>
 	</body>
 </html>
