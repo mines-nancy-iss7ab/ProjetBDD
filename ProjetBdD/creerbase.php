@@ -40,8 +40,8 @@
 						`id_auteur` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 						`nom_auteur` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 						`prénom_auteur` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-						`naissance` INT NOT NULL,
-						`décès` INT NOT NULL,
+						`naissance` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+						`décès` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '-',
 						`nationalité` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 						) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;";
 		 
@@ -50,7 +50,7 @@
 			$requete = "CREATE TABLE IF NOT EXISTS `".DB_NAME."`.`"."Editeur"."` (
 						`id_editeur` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 						`nom_éditeur` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-						`site_web` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL 
+						`site_web` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL
 						) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;";
 		 
 			// on prépare et on exécute la requête
