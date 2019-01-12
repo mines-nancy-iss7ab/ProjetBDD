@@ -12,8 +12,8 @@ if(isset($_POST['ajouterediteur']))
 				$req = $connexion->prepare('INSERT INTO editeur(nom_éditeur,site_web) VALUES(:nom_editeur, :siteweb)');
 
 				$req->execute(array(
-					'nom_editeur' => $_POST['nom_editeur'],
-					'siteweb' => ($_POST['siteweb']==NULL) ? "-" : $_POST['siteweb']));
+					'nom_editeur' => htmlspecialchars($_POST['nom_editeur']),
+					'siteweb' => ($_POST['siteweb']==NULL) ? "-" : htmlspecialchars($_POST['siteweb'])));
 }
 else if(isset($_POST['ajouterauteur']))
 {
@@ -24,11 +24,11 @@ else if(isset($_POST['ajouterauteur']))
 	$connexion = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8", DB_USER, DB_PASSWORD);
 				$req = $connexion->prepare('INSERT INTO auteur(nom_auteur, prénom_auteur, naissance, décès, nationalité) VALUES(:nom_auteur, :prenom_auteur, :naissance, :deces, :nationalite)');
 				$req->execute(array(
-					'nom_auteur' => $_POST['nom_auteur'],
-					'prenom_auteur' => $_POST['prénom_auteur'],
+					'nom_auteur' => htmlspecialchars($_POST['nom_auteur']),
+					'prenom_auteur' => htmlspecialchars($_POST['prénom_auteur']),
 					'naissance'=> $naiss->format("d/m/Y"),
 					'deces'=> ($_POST['deces']==NULL) ? "-" :$mort->format("d/m/Y"),
-					'nationalite'=> $_POST['nationalite']));	
+					'nationalite'=> htmlspecialchars($_POST['nationalite'])));	
 }
 else if(isset($_POST['ajouterlivre']))
 {
@@ -37,11 +37,11 @@ else if(isset($_POST['ajouterlivre']))
 				$req = $connexion->prepare('INSERT INTO livre(titre_livre,genre,parution,nature,langue) VALUES(:titre_livre, :genre,:parution,:nature,:langue)');
 
 				$req->execute(array(
-					'titre_livre' => $_POST['titre_livre'],
-					'genre' => $_POST['genre'],
-					'parution' => $_POST['parution'],
-					'nature' => $_POST['nature'],
-					'langue' => $_POST['langue']));
+					'titre_livre' => htmlspecialchars($_POST['titre_livre']),
+					'genre' => htmlspecialchars($_POST['genre']),
+					'parution' => htmlspecialchars($_POST['parution']),
+					'nature' => htmlspecialchars($_POST['nature']),
+					'langue' => htmlspecialchars($_POST['langue'])));
 }
 else if(isset($_POST['ajoutereditepar']))
 {
@@ -63,6 +63,6 @@ else if(isset($_POST['ajouterecritpar']))
 					'id_auteur' => $_POST['id_auteur'],
 					'id_livre' => $_POST['id_livre']));
 }
-// Redirection du visiteur vers la page de départ
+// Redirection du visiteur vers la page du minichat
 header('Location: formulaireajout.php');
 ?>

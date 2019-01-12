@@ -58,8 +58,8 @@
 			$requete = "CREATE TABLE IF NOT EXISTS `".DB_NAME."`.`"."Ecriture"."` (
 						`id_auteur` INT NOT NULL ,
 						`id_livre` INT NOT NULL,
-						FOREIGN KEY (id_auteur) REFERENCES Auteur(id_auteur),
-						FOREIGN KEY (id_livre) REFERENCES Livre(id_livre)
+						FOREIGN KEY (id_auteur) REFERENCES Auteur(id_auteur) ON DELETE CASCADE,
+						FOREIGN KEY (id_livre) REFERENCES Livre(id_livre) ON DELETE CASCADE
 						) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;";
 		 
 			// on prépare et on exécute la requête
@@ -67,8 +67,8 @@
 			$requete = "CREATE TABLE IF NOT EXISTS `".DB_NAME."`.`"."Edition"."` (
 						`id_editeur` INT NOT NULL ,
 						`id_livre` INT NOT NULL,
-						FOREIGN KEY (id_editeur) REFERENCES Editeur(id_editeur),
-						FOREIGN KEY (id_livre) REFERENCES Livre(id_livre)
+						FOREIGN KEY (id_editeur) REFERENCES Editeur(id_editeur) ON DELETE CASCADE,
+						FOREIGN KEY (id_livre) REFERENCES Livre(id_livre) ON DELETE CASCADE
 						) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;";
 		 
 			// on prépare et on exécute la requête
@@ -77,11 +77,17 @@
 		}
 	}
 	function DropDatabase(){
+		try{
 		$connexion = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
 		if($connexion){
 			$requete = "DROP DATABASE IF EXISTS `".DB_NAME."`";
 			$connexion->prepare($requete)->execute(); 
 		}
+		}
+		catch (PDOException $e) {
+			die('Error: '.$e->getMessage().' Code: '.$e->getCode());
+		}
+		
 	}
 // Insertion du message à l'aide d'une requête préparée
 

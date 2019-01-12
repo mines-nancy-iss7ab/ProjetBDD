@@ -13,19 +13,22 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="style.css" />
 		<title>Projet BDD</title>
 	</head>
 	
 	<body>
-	
+	<div class="container">
 	<form method="post">
-	Auteur <input type="file" name="table_auteur" required/><br/>
-	Editeur <input type="file" name="table_editeur"required/><br/>
-	Livre <input type="file" name="table_livre"required/><br/>
-	Ecrit par <input type="file" name="table_ecriture" required/><br/>
-	Edité par <input type="file" name="table_edition" required/><br/>
+	
+	<label>Auteur</label> <input type="file" name="table_auteur" required/><br/>
+	<label>Editeur</label> <input type="file" name="table_editeur"required/><br/>
+	<label>Livre</label> <input type="file" name="table_livre"required/><br/>
+	<label>Ecrit par</label> <input type="file" name="table_ecriture" required/><br/>
+	<label>Edité par</label> <input type="file" name="table_edition" required/><br/><br/>
 	<input type="submit" name="commencer_remplir" value="Remplir table"/>
 	</form>
+	</div>
 	
 	<?php 
 	if(isset($_POST['commencer_remplir'])){

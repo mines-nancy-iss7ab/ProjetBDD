@@ -1,0 +1,12 @@
+.container {
+  width: 500px;
+  clear: both;
+}
+
+.container input {
+  width: 50%;
+  clear: both;
+}
+
+.invisible{
+display:none}

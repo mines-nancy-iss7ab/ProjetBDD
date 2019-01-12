@@ -4,7 +4,8 @@
 			
 	
 	<body>
-		
+		<a href="index.php" >Accueil</a><br/>
+		<h1> Ajout de valeur </h1>
 		<form method="post">
 		<label for="table"> Choisir une table :</label><br/>
 		 <select name="table" action="">
@@ -43,9 +44,9 @@
 					<input type="text" name="prénom_auteur"><br/>
 					
 					<label id="Naissance">Naissance : </label><br/>
-					<input type="number" name="naissance"><br/>
+					<input type="date" name="naissance"><br/>
 					<label id="Décès">Décès : </label><br/>
-					<input type="number" name="deces"><br/>
+					<input type="date" name="deces"><br/>
 					<label id="Nationalité">Nationalité : </label><br/>
 					<input type="text" name="nationalite"><br/>
 					<input type="submit" name="ajouterauteur" value="Ajouteur valeur"/>

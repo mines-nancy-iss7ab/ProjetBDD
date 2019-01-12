@@ -4,7 +4,17 @@ define( 'DB_USER', 'root' );
 define( 'DB_PASSWORD', '' );
 define( 'DB_HOST', 'localhost' );
 ?>
-
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Projet BDD</title>
+	</head>
+	
+	<body>
+	<a href="index.php" >Accueil</a><br/>
+	<h1> Interrogation de la base </h1>
 <form method="post">
 		<label for="table"> Choisir une table :</label><br/>
 		 <select name="questions" action="">
@@ -31,20 +41,20 @@ define( 'DB_HOST', 'localhost' );
 		
 		function afficherRequete($requete){
 			$connexion = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8", DB_USER, DB_PASSWORD);
-				$reponse = $connexion->query($requete);
-				
+			$reponse = $connexion->query($requete);
+				?><table><?php
 				while ($donnees = $reponse->fetch())
 				
 				{
 					?><tr><?php
 					for($i=0; $i<$reponse->columnCount();$i++)
 					{
-					 echo "<td>".$donnees[$i]."</td>" ;
-					echo "&nbsp";
+					 ?><td><?php echo $donnees[$i];?></td><?php
+					
 					}
-					echo "<br>";
+					
 				?></tr><?php
-				}
+				}?></table><?php
 		}
 			
 			if(isset($_POST['submit'])){
@@ -165,3 +175,5 @@ define( 'DB_HOST', 'localhost' );
 			}
 		}
 		?>	
+	</body>
+</html>
